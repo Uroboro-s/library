@@ -2,6 +2,7 @@
 
 *Used to add books 
 *Project given by theodinproject
+*Check out my other projects at my github: https://github.com/Uroboro-s
 
 May 1, 2023
 --At the moment, you can only add books which includes the title, author, page count and read/unread status of the book.
