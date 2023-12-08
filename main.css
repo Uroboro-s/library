@@ -1,0 +1,220 @@
+:root
+{
+    --darkgrey-color: #cbd5e1;
+    --white-color: #fffbfb;
+    --grey-color: #f0eef1;
+    --shadow: 4px 2px 4px grey;
+}
+
+
+body{
+   
+    margin: 0;
+    background-color: var(--grey-color);
+}
+
+/*For heading that hold Library*/
+header{
+    width: auto;
+    height: 100px;
+    background-color: var(--darkgrey-color);
+    padding-top: 10px;
+    padding-left: 10%;
+
+    box-shadow: var(--shadow);
+}
+h1{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 44px;
+}
+
+/*Styling the 'add a book' button and its container div*/
+#addbook-container
+{
+    
+    height: 80px;
+    display: flex;
+   
+    justify-content: center;
+    align-content: center;
+}
+#btn{
+    height: 60px;
+    width: 140px;
+    background-color: inherit;
+    border: 0;
+    font-size: 24px;
+    margin-top: 10px;
+}
+#btn:hover{
+    background-color: #b6b6b6;
+    border-radius: 30%;
+}
+
+/*contains grid whose elemnts contain the books*/
+#page-container
+{
+    
+    width: auto;
+    height: 100%;
+    
+    margin: 30px 70px 0 70px;
+   
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    
+    
+    
+}
+/*contains the book cards*/
+.books
+{
+    
+    height: 300px;
+    border-radius: 8px;
+    background-color: var(--white-color);
+    
+    padding: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+/*Styling the book cards*/
+.books > h3{
+    background-color: var(--darkgrey-color);
+    margin: 0;
+    height: 70px;
+    font-size: 28px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.books > p{
+    font-size: 24px;
+}
+.books > button{
+    margin-top: 5px;
+    height: 40px;
+    width: 70%;
+    border-radius: 20%; 
+    border: 0;
+    font-size: 20px;
+;
+}
+.status-button{
+    background-color: #4ade80;
+
+}/*temporary for styling*/
+
+
+.remove-button
+{
+    background-color: #ef4444;
+}
+.status-button-read-mode
+{
+    background-color: #4ade80;
+}
+.status-button-unread-mode
+{
+    background-color: #f87171;
+}
+
+.modal-container
+{
+    z-index: 1;/* necessary to prevent overlay from overalaying the modal contaienr */
+    background-color: var(--darkgrey-color);
+    position: fixed;
+    width: 300px;
+    height: 350px;
+    top: 100px;
+    left: 50%;
+    padding: 5px;
+    border-radius: 7px;
+
+
+    
+    margin-left: -150px;
+
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.modal-container > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 22px;
+}
+.hidden
+{
+    display: none;
+}
+.overlay
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* pointer-events: none; *//*necessary to prevent overlay from getting overlayed 
+    on the modal*/
+    
+
+    background-color: rgb(0, 0, 0, 0.5);
+}
+#close
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-top-right-radius: 7px;
+    
+    background-color: black;
+    color: white;
+    border: 0;
+}
+form{
+    padding: 15px;
+    line-height: 2.5;
+}
+form > input{
+    width: 100%;
+    
+    
+}
+form > div > input{
+    width: 100%;
+    height: 30px;
+    border-radius: 12px;
+    border: 0;
+    padding-left: 8px;
+    
+}
+input::placeholder{
+    
+}
+form > label{
+    width: 90%;
+    font-weight: bold;
+}
+#status{
+    width: auto;
+}
+#submit{
+    width: 70px;
+    height: 30px;
+    
+    border-radius: 10px;
+    border: 0;
+    background-color: buttonface;
+}
+#submit:hover{
+    font-size: 15px;
+    font-weight: bold;
+}
