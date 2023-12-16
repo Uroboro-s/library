@@ -1,8 +1,8 @@
 
-
+import {Library} from "./library.js";
 
 /*array data structure that stores all the book object entered */
-function main(){}
+
 
 const myLibrary=[];
 
@@ -60,27 +60,32 @@ function displayBook()
     let classOfStatus="";
 
     if(book.read==false){
-        classOfStatus="status-button-unread-mode";
+        classOfStatus="status-button unread-mode";
         msg="Not read";}
     else{
         msg="Read";
-        classOfStatus="status-button-read-mode";}
+        classOfStatus="status-button read-mode";}
     div.innerHTML=`
     <h3>${book.title}</h3>
     <p>${book.author}</p>
     <p>${book.pages}</p>
-    <button type="submit"  class="${classOfStatus}" onclick="toggleStatus(this)">${msg}</button>
+    <button type="submit"  class="${classOfStatus}">${msg}</button>
     <button type="submmit" class="remove-button" onclick="removeBook(this)" >Remove</button>
     `;
     document.getElementById('page-container').appendChild(div);
-
+    
+    const statusButtons = document.querySelectorAll('.status-button');
+        console.log(statusButtons);
+    
+    statusButtons[myLibrary.length].addEventListener('click', (event) => toggleStatus(this));
 }
 
 
  /*function to create toggle working of read/not read status */   
 function toggleStatus(toggleButton)
 {
-    
+    console.log("here");
+    console.log(Library.getLibrary());
     if(toggleButton.innerHTML == "Read")
         {
             toggleButton.innerHTML="Not read";
@@ -156,5 +161,3 @@ function onClose()
     pages.value="";
     status.checked=false;
 }
-
-main();
