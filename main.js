@@ -38,7 +38,7 @@ function onSubmit(event)
     
     myLibrary.push(book);
     
-   displayBook(); 
+    displayBook(); 
     event.preventDefault();
 
 }
@@ -70,22 +70,27 @@ function displayBook()
     <p>${book.author}</p>
     <p>${book.pages}</p>
     <button type="submit"  class="${classOfStatus}">${msg}</button>
-    <button type="submmit" class="remove-button" onclick="removeBook(this)" >Remove</button>
+    <button type="submit" class="remove-button" >Remove</button>
     `;
     document.getElementById('page-container').appendChild(div);
     
     const statusButtons = document.querySelectorAll('.status-button');
-        console.log(statusButtons);
+    const removeButtons = document.querySelectorAll('.remove-button');
+    //console.log(statusButtons);
+    console.log(removeButtons);
     
-    statusButtons[myLibrary.length].addEventListener('click', (event) => toggleStatus(this));
+    statusButtons[myLibrary.length].addEventListener('click', (event) => toggleStatus(event));
+    removeButtons[myLibrary.length].addEventListener('click', (event) => removeBook(event));
 }
 
 
  /*function to create toggle working of read/not read status */   
-function toggleStatus(toggleButton)
+function toggleStatus(event)
 {
-    console.log("here");
-    console.log(Library.getLibrary());
+    console.log(event.target);
+    const toggleButton = event.target;
+    console.log(toggleButton)
+    //console.log(Library.getLibrary());
     if(toggleButton.innerHTML == "Read")
         {
             toggleButton.innerHTML="Not read";
@@ -102,9 +107,10 @@ function toggleStatus(toggleButton)
 
 /**function to implement remove button working 
  ,,gets invoked through onclick on all remove buttons*/
-function removeBook(removeButton)
+function removeBook(event)
 {
-   
+    console.log(event);
+    const removeButton = event.target;
     let title = (removeButton.parentNode.children[0]).textContent;
    
 
