@@ -4,7 +4,7 @@ import {Library} from "./library.js";
 /*array data structure that stores all the book object entered */
 
 
-const myLibrary=[];
+const myLibrary = new Library();
 
 
 /*modal and overlay functioning */
@@ -13,6 +13,12 @@ button.addEventListener('click', onAddBook);
 
 const modal=document.querySelector('.modal-container');
 const overlay=document.querySelector('.overlay');
+
+const close=document.querySelector('#close');
+close.addEventListener('click', onClose);
+
+const submit=document.querySelector('#submit');
+submit.addEventListener('click', onSubmit);
 
 function onAddBook()
 {
@@ -23,8 +29,7 @@ function onAddBook()
 
 
 /*submit button functioning */
-const submit=document.querySelector('#submit');
-submit.addEventListener('click', onSubmit);
+
 
 function onSubmit(event)
 {
@@ -36,8 +41,8 @@ function onSubmit(event)
     
     const book = new Book(title.value , author.value, pages.value, status.checked);
     
-    myLibrary.push(book);
-    
+    myLibrary.addBook(book);
+    console.log(myLibrary.getLibrary());
     displayBook(); 
     event.preventDefault();
 
@@ -53,7 +58,7 @@ function displayBook()
 
     div.classList = "books";
 
-    const book = myLibrary[myLibrary.length-1];
+    const book = myLibrary.getLibrary()[myLibrary.length()-1];
     console.log(book);
 
     let msg="";
@@ -79,8 +84,8 @@ function displayBook()
     //console.log(statusButtons);
     console.log(removeButtons);
     
-    statusButtons[myLibrary.length].addEventListener('click', (event) => toggleStatus(event));
-    removeButtons[myLibrary.length].addEventListener('click', (event) => removeBook(event));
+    statusButtons[myLibrary.length()].addEventListener('click', (event) => toggleStatus(event));
+    removeButtons[myLibrary.length()].addEventListener('click', (event) => removeBook(event));
 }
 
 
@@ -150,8 +155,7 @@ function Book(title, author, pages, status)
 
 /*Functioning of clode modal window button
 ,,,also clears all data in form when window is closed */
-const close=document.querySelector('#close');
-close.addEventListener('click', onClose);
+
 
 function onClose()
 {

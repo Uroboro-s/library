@@ -4,8 +4,11 @@ class Library {
     getLibrary() {
         return myLibrary;
     }
-    addBook() {
-
+    length() {
+        return myLibrary.length;
+    }
+    addBook(book) {
+        myLibrary.push(book);
     }
 }
 
