@@ -10,6 +10,9 @@ class Library {
     addBook(book) {
         myLibrary.push(book);
     }
+    removeBook(index) {
+        myLibrary.splice(index, 1);
+    }
 }
 
 export  {Library};
