@@ -2,10 +2,14 @@
 import {Library} from "./library.js";
 import { onAddBook, onClose, displayBook } from "./display.js";
 
-/*array data structure that stores all the book object entered */
-
-
+//used to invoke the Library class functions that 
+//handle data manipulation
 const myLibrary = new Library();
+
+
+const book = new Book("Throne of Glass" , "Sarah J Maas", "289", "Read");
+myLibrary.addBook(book);
+displayBook();
 
 /*book constructor
 ,,used to create objects(books)  */
@@ -23,7 +27,7 @@ function Book(title, author, pages, status)
 }
 
 
-/*modal and overlay functioning */
+//initial event listeners at the time of webpage loading
 const button=document.querySelector('#btn');
 button.addEventListener('click', onAddBook);
 
@@ -34,11 +38,7 @@ const submit=document.querySelector('#submit');
 submit.addEventListener('click', onSubmit);
 
 
-
-
-/*submit button functioning */
-
-
+/*submit button functioning to add book object in data*/
 function onSubmit(event)
 {
     
@@ -50,65 +50,42 @@ function onSubmit(event)
     const book = new Book(title.value , author.value, pages.value, status.checked);
     
     myLibrary.addBook(book);
-    //console.log(myLibrary.getLibrary());
+
     displayBook(); 
     event.preventDefault();
 
 }
 
+//function to remove book element/object in data array in library.js
 function removeBook(event) {
     const removeButton = event.target;
     let title = (removeButton.parentNode.children[0]).textContent;
-    
  
     for(let i=0; i<myLibrary.length(); i++)
     {
-        console.log("here 1");
          if(myLibrary.getLibrary()[i].title == title)
-         {
-            console.log("here");
-            //console.log(myLibrary);
-            console.log(myLibrary[i]);
             myLibrary.removeBook(i, 1);
-            //console.log(myLibrary);
-         }
     }
 }
 
 
-
-
-
- /*function to create toggle working of read/not read status */   
+ /*function to create toggle working of read/not read status in maintained data*/   
 function toggleStatus(event)
 {
-    console.log(event.target);
+
     const toggleButton = event.target;
-    console.log(toggleButton)
-    //console.log(Library.getLibrary());
-    if(toggleButton.innerHTML == "Read")
-        {
-            toggleButton.innerHTML="Not read";
-            toggleButton.classList="status-button-unread-mode";
-        }
-    else
-        {
-            toggleButton.innerHTML="Read";
-            toggleButton.classList="status-button-read-mode";
-        }
-   
+    let title = (toggleButton.parentNode.children[0]).textContent;
+
+    for(let i=0; i<myLibrary.length(); i++)
+    {
+         if(myLibrary.getLibrary()[i].title == title)
+            myLibrary.toggleStatus(i);
+    }
 }
 
+export {myLibrary, removeBook, toggleStatus};
 
 
-
-
-
-
-export {myLibrary, removeBook};
-
-/*Functioning of clode modal window button
-,,,also clears all data in form when window is closed */
 
 
 

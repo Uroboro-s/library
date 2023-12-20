@@ -1,7 +1,7 @@
 
-import { myLibrary, removeBook } from "./main.js";
+import { myLibrary, removeBook, toggleStatus } from "./main.js";
 
-
+//displays modal when '+add book' button is clicked
 function onAddBook()
 {
     const modal=document.querySelector('.modal-container');
@@ -10,6 +10,9 @@ function onAddBook()
     modal.classList.remove("hidden");
 }
 
+
+/*Functioning of clode modal window button
+,,,also clears all data in form when window is closed */
 function onClose()
 {
     const modal=document.querySelector('.modal-container');
@@ -33,11 +36,9 @@ function onClose()
 function displayBook()
 {
     const div = document.createElement('div');
-
     div.classList = "books";
 
     const book = myLibrary.getLibrary()[myLibrary.length()-1];
-    console.log(book);
 
     let msg="";
     let classOfStatus="";
@@ -59,23 +60,32 @@ function displayBook()
     
     const statusButtons = document.querySelectorAll('.status-button');
     const removeButtons = document.querySelectorAll('.remove-button');
-    console.log(statusButtons);
-    //console.log(removeButtons);
-    console.log(myLibrary.length());
 
-    statusButtons[myLibrary.length()].addEventListener('click', (event) => toggleStatus(event));
-    removeButtons[myLibrary.length()].addEventListener('click', (event) => {removeBook(event); removeBookDisplay(event)});
+    statusButtons[myLibrary.length()-1].addEventListener('click', (event) => {toggleStatus(event); toggleStatusDisplay(event)});
+    removeButtons[myLibrary.length()-1].addEventListener('click', (event) => {removeBook(event); removeBookDisplay(event)});
 }
 
-/**function to implement remove button working 
- ,,gets invoked through onclick on all remove buttons*/
+//function to remove the book element when remove button is clicked
  function removeBookDisplay(event)
  {
-    console.log(event);
     const removeButton = event.target;
-    removeButton.parentNode.remove();
-    
-     
+    removeButton.parentNode.remove();     
+ }
+
+ //function to change display of read/not read status 
+ function toggleStatusDisplay(event) {
+    const toggleButton = event.target;
+
+    if(toggleButton.innerHTML == "Read")
+    {
+        toggleButton.innerHTML="Not read";
+        toggleButton.classList="status-button unread-mode";
+    }
+    else
+    {
+        toggleButton.innerHTML="Read";
+        toggleButton.classList="status-button read-mode";
+    }
  }
 
 export {onAddBook, onClose, displayBook};

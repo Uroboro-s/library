@@ -115,11 +115,11 @@ h1{
 {
     background-color: #ef4444;
 }
-.status-button-read-mode
+.read-mode
 {
     background-color: #4ade80;
 }
-.status-button-unread-mode
+.status-button.unread-mode
 {
     background-color: #f87171;
 }
